@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>MLstroke</title>
+  <div class = "header">
+    </div>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style7.css') }}">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+
+
+	<div class="container-contact100">
+
+		<div class="wrap-contact100">
+			<form action="{{ url_for('predict')}}" method="post">
+				<h1 ><span class="contact100-form-title">
+					Predict Stroke Status
+				</span></h1>
+        
+        <h2 ><span class="contact100-form-title">
+					{{ prediction_text }}
+				</span></h2>
+        
+         <div class="row">
+  <div id="column" >
+  เพศ (Sex) :
+  </div>
+  <div class="toggle" id="column" >
+    <input type="radio" name="SEX" value="1" id="male" checked="checked"/>
+		<label for="male">ผู้ชาย</label>
+		<input type="radio" name="SEX" value="0" id="female" />
+		<label for="female">ผู้หญิง</label>
+  </div>
+</div>     
+        
+        <div class="wrap-input100 validate-input" data-validate="Please enter your name">
+					<input class="input100" type="text" name="AGE" placeholder="อายุ (Age)" required="required">
+					<span class="focus-input100"></span>
+				</div>
+          
+            <div class="wrap-input100 validate-input" data-validate="Please enter your name">
+					<input class="input100" type="text" name="sbp" placeholder="ค่าความดันเลือดสูงสุด (Sbp)" required="required">
+					<span class="focus-input100"></span>
+				</div>
+          
+          <div class="wrap-input100 validate-input" data-validate="Please enter your name">
+					<input class="input100" type="text" name="dbp" placeholder="ค่าความดันเลือดต่ำสุด (Dbp)" required="required">
+					<span class="focus-input100"></span>
+				</div>
+        
+          <div class="wrap-input100 validate-input" data-validate="Please enter your name">
+					<input class="input100" type="text" name="bw" placeholder="น้ำหนัก (bw)" required="required">
+					<span class="focus-input100"></span>
+				</div>       
+          
+          <div class="row">
+  <div id="column" >
+  อาการอัมพฤกษ์ครึ่งซีก (Hemiparesis) :
+  </div>
+  <div class="toggle" id="column" >
+    <input type="radio" name="Hemiparesis" value="1" id="HemiparesisYES" checked="checked"/>
+		<label for="HemiparesisYES">ใช่</label>
+		<input type="radio" name="Hemiparesis" value="0" id="HemiparesisNO" />
+		<label for="HemiparesisNO">ไม่ใช่</label>
+  </div>
+</div>
+          
+          <div class="row">
+  <div id="column" >
+  อาการชา (Hemianesthesia) :
+  </div>
+  <div class="toggle" id="column" >
+    <input type="radio" name="Hemianesthesia" value="1" id="HemianesthesiaYES" checked="checked"/>
+		<label for="HemianesthesiaYES">ใช่</label>
+		<input type="radio" name="Hemianesthesia" value="0" id="HemianesthesiaNO" />
+		<label for="HemianesthesiaNO">ไม่ใช่</label>
+  </div>
+</div>
+           <div class="row">
+  <div id="column" >
+   ประวัติการเป็นโรคหลอดเลือดในสมอง :
+  </div>
+  <div class="toggle" id="column" >
+    <input type="radio" name="prev_stroke " value="1" id="prev_stroke YES" checked="checked"/>
+		<label for="prev_stroke YES">ใช่</label>
+		<input type="radio" name="prev_stroke " value="0" id="prev_stroke NO" />
+		<label for="prev_stroke NO">ไม่ใช่</label>
+  </div>
+</div>     
+          
+          <div class="row">
+  <div id="column" >
+    เป็นโรคไต (ckd) :
+  </div>
+  <div class="toggle" id="column" >
+    <input type="radio" name="ckd" value="1" id="ckdYES" checked="checked"/>
+		<label for="ckdYES">ใช่</label>
+		<input type="radio" name="ckd" value="0" id="ckdNO" />
+		<label for="ckdNO">ไม่ใช่</label>
+  </div>
+</div>     
+          
+          <div class="row">
+  <div id="column" >
+    ใช้ยาละลายลิ่มเลือด (anticoag) :
+  </div>
+  <div class="toggle" id="column" >
+    <input type="radio" name="anticoag" value="1" id="anticoagYES" checked="checked"/>
+		<label for="anticoagYES">ใช่</label>
+		<input type="radio" name="anticoag" value="0" id="anticoagNO" />
+		<label for="anticoagNO">ไม่ใช่</label>
+  </div>
+</div>     
+          
+          <div class="row">
+  <div id="column" >
+     มีอาการลิ้นแข็ง (dysarthria) :
+  </div>
+  <div class="toggle" id="column" >
+    <input type="radio" name="dysarthria" value="1" id="dysarthriaYES" checked="checked"/>
+		<label for="dysarthriaYES">ใช่</label>
+		<input type="radio" name="dysarthria" value="0" id="dysarthriaNO" />
+		<label for="dysarthriaNO">ไม่ใช่</label>
+  </div>
+</div> 
+          
+          <div class="row">
+  <div id="column" >
+     พูดไม่ออกฟังไม่เข้าใจ (aphasia) :
+  </div>
+  <div class="toggle" id="column" >
+    <input type="radio" name="aphasia" value="1" id="aphasiaYES" checked="checked"/>
+		<label for="aphasiaYES">ใช่</label>
+		<input type="radio" name="aphasia" value="0" id="aphasiaNO" />
+		<label for="aphasiaNO">ไม่ใช่</label>
+  </div>
+</div>    
+          
+          <div class="row">
+  <div id="column" >
+      สูบบุหรี่ (smoking) :
+  </div>
+  <div class="toggle" id="column" >
+    <input type="radio" name="smoking" value="1" id="smokingYES" checked="checked"/>
+		<label for="smokingYES">ใช่</label>
+		<input type="radio" name="smoking" value="0" id="smokingNO" />
+		<label for="smokingNO">ไม่ใช่</label>
+  </div>
+</div>
+          
+            <div class="wrap-input100 validate-input" data-validate="Please enter your name">
+					<input class="input100" type="text" name="nihss_combind" placeholder="คะแนนแบบทดสอบ (nihss_combind
+)" required="required">
+					<span class="focus-input100"></span>
+				</div>
+          
+          <div class="row">
+  <div id="column" >
+      มีค่าความดันโลหิตในกะโหลกศีรษะ (ich_sym
+) :
+  </div>
+  <div class="toggle" id="column" >
+    <input type="radio" name="ich_sym" value="1" id="ich_symYES" checked="checked"/>
+		<label for="ich_symYES">ใช่</label>
+		<input type="radio" name="ich_sym" value="0" id="ich_symNO" />
+		<label for="ich_symNO">ไม่ใช่</label>
+  </div>
+</div>    
+          					
+
+
+
+				<div class="container-contact100-form-btn">
+					<button  type="submit"class="contact100-form-btn">
+						<span>
+							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
+							Predict              
+						</span>
+					</button>    
+					  
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+</body>
+</html>
